@@ -17,8 +17,14 @@
 function isot(){
     $(document).ready(function(){
 
-        var $container = $('.isotope').isotope({
-            itemSelector: '.isotope-item'
+        // var $container = $('.isotope').isotope({
+        //     itemSelector: '.isotope-item'
+        // });
+
+        var $container = $('.isotope').imagesLoaded( function() {
+            $container.isotope({
+                itemSelector: '.isotope-item'
+            });
         });
 
         // store filter for each group
@@ -44,8 +50,8 @@ function isot(){
         $('.button-group').each( function( i, buttonGroup ) {
             var $buttonGroup = $( buttonGroup );
             $buttonGroup.on( 'click', 'button', function() {
-                $buttonGroup.find('.is-checked').removeClass('is-checked');
-                $( this ).addClass('is-checked');
+                $buttonGroup.find('.active').removeClass('active');
+                $( this ).addClass('active');
             });
         });
 
@@ -61,9 +67,13 @@ function isot(){
         // All pages
         'common': {
             init: function() {
-                $("#menu-toggle").click(function(e) {
-                    e.preventDefault();
-                    $("#wrapper").toggleClass("toggled");
+                $(function(){
+                    $('#toolbox-filter').on('click', function(){
+                        $('#filters.bottom.sidebar').sidebar('toggle');
+                    });
+                    $('.cards .image').dimmer({
+                        on: 'hover'
+                    });
                 });
             },
             finalize: function() {
@@ -74,6 +84,8 @@ function isot(){
         'home': {
             init: function() {
                 // JavaScript to be fired on the home page
+                isot();
+
             },
             finalize: function() {
                 // JavaScript to be fired on the home page, after the init JS
@@ -85,17 +97,14 @@ function isot(){
                 // JavaScript to be fired on the about us page
             }
         },
-        'toolbox': {
+        'page-template-toolbox': {
             init: function() {
-                isot();
-            }
-        },
-        'mybox': {
-            init: function() {
-                isot();
+
             }
         }
     };
+
+
 
     // The routing fires all common scripts, followed by the page specific scripts.
     // Add additional events for more control over timing e.g. a finalize event

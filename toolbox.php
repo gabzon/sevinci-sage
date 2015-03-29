@@ -4,11 +4,13 @@
 */
 ?>
 
-<div id="toolbox-page" class="row">
-    <div class="col-md-2">
-        <?php get_template_part('templates/toolbox','filters'); ?>
+
+<div class="ui padded grid">
+    <div class="sixteen wide column">
+        <button id="toolbox-filter" class="ui button" name="button" type="button">
+            <i class="filter icon"></i> <?php _e('Filter','sage') ?>
+        </button>
     </div>
-    <div class="col-md-10">
-        <?php get_template_part('templates/toolbox','tools'); ?>
-    </div>
+
+    <?php get_template_part('templates/toolbox','tools'); ?>
 </div>

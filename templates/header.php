@@ -1,27 +1,27 @@
-<?php use Roots\Sage\Nav\NavWalker; ?>
+<?php
+use Roots\Sage\Nav\NavWalker;
+$menu_name = 'primary_navigation';
+?>
 
-<header class="banner navbar navbar-static-top" role="banner">
 
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only"><?= __('Toggle navigation', 'sage'); ?></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logos/sevinci-logo.png" alt="" width="120px"/>
-            </a>
-        </div>
-
-        <nav class="collapse navbar-collapse navbar-right" role="navigation">
-            <?php
-            if (has_nav_menu('primary_navigation')) :
-                wp_nav_menu(['theme_location' => 'primary_navigation', 'walker' => new NavWalker(), 'menu_class' => 'nav navbar-nav']);
+<div id="top-menu" class="ui borderless secondary fixed top menu">
+    <div class="ui vertical padded grid">
+        <a class="item" href="<?= esc_url(home_url('/')); ?>">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo/sevinci-logo-red-full.svg" alt="" width="120px"/>
+        </a>
+        <div class="right menu">
+            <?php  if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) :
+                $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+                $menu_items = wp_get_nav_menu_items($menu->term_id);
+                foreach ( (array) $menu_items as $key => $menu_item ) :
+                    $class = $menu_item->classes; ?>
+                    <a href="<?php echo $menu_item->url; ?>" class="item <?php if(get_the_ID() == $menu_item->object_id){echo 'active';}else{echo 'bla';}?>">
+                        <?php echo $menu_item->title; ?>
+                    </a>
+                    <?php
+                endforeach;
             endif;
             ?>
-        </nav>
+        </div>
     </div>
-
-</header>
+</div>
