@@ -1,20 +1,62 @@
+<?php
+$theme_options = get_option('sevinci_settings');
+$facebook   = $theme_options['facebook'];
+$twitter    = $theme_options['twitter'];
+$linkedin   = $theme_options['linkedin'];
+$gplus      = $theme_options['gplus'];
+$instagram  = $theme_options['instagram'];
+$pinterest  = $theme_options['pinterest'];
+$youtube    = $theme_options['youtube'];
+$vimeo      = $theme_options['vimeo'];
+$skype      = $theme_options['skype'];
+
+$social_media = array(
+    'facebook'      => $facebook,
+    'twitter'       => $twitter,
+    'linkedin'      => $linkedin,
+    'google plus'   => $gplus,
+    'instagram'     => $instagram,
+    'pinterest'     => $pinterest,
+    'youtube'       => $youtube,
+    //'vimeo'         => $vimeo,
+    //'skype'         => $skype
+);
+
+?>
+
 <footer class="ui inverted black segment">
+    <br>
     <div class="ui padded grid">
         <div class="column">
             <div class="ui four column grid stackable">
-                <div class="column">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div class="five wide column">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/logo/sevinci-logo-red-full.svg" alt="" width="150px"/>
+                    <br>
+                    <br>
+                    <?php _e('A business toolbox to help people direct and manage business projects efficiently','sage'); ?>
                 </div>
-                <div class="column">
+                <div class="three wide column footer-menu">
+                    <h4><?php _e('Menu','sage') ?></h4>
                     <?php dynamic_sidebar('sidebar-footer'); ?>
                 </div>
-                <div class="column">
-
+                <div class="three wide column footer-menu">
+                    <h4><?php _e('Contribute','sage') ?></h4>
+                    <?php dynamic_sidebar( 'sidebar-contribution' ); ?>
                 </div>
-                <div class="column">
-                    <?php do_action('icl_language_selector'); ?>
+                <div class="five wide column">
+                    <h4><?php _e('Contact','sage') ?></h4>
+                    <?php foreach ($social_media as $social => $social_url): ?>
+                        <?php if (!empty($social_url)): ?>
+                            <a href="<?php echo $social_url; ?>" target="_blank">
+                                <div class="ui circular <?php echo $social; ?> icon button">
+                                    <i class="<?php echo $social; ?> icon"></i>
+                                </div>
+                            </a>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
+    <br>
 </footer>

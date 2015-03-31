@@ -66,7 +66,7 @@ add_filter('sage/wrap_base', __NAMESPACE__ . '\\sage_wrap_base_cpts'); // Add ou
 function my_login_logo() { ?>
     <style type="text/css">
     body.login div#login h1 a {
-        background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/sevinci-logo.png);
+        background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logo/sevinci-logo-red-full.svg);
         background-size: 100% 100%;
         width: 100%;
         height:100%;

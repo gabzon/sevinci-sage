@@ -74,6 +74,9 @@ function isot(){
                     $('.cards .image').dimmer({
                         on: 'hover'
                     });
+                    $('.dropdown').dropdown({
+                        transition: 'drop'
+                    });
                 });
             },
             finalize: function() {
@@ -85,6 +88,7 @@ function isot(){
             init: function() {
                 // JavaScript to be fired on the home page
                 isot();
+
 
             },
             finalize: function() {
